@@ -121,14 +121,14 @@ const NavBar = () => {
               ) : (
                 <div className="navbar-end flex items-center mt-2 -mx-2 sm:mt-0 space-x-3">
                   <Link
-                    to="/login"
+                    to="/auth"
                     className="btn btn-solid-primary bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold w-28"
                   >
                     Log In
                   </Link>
 
                   <Link
-                    to="/signup"
+                    to="/auth"
                     className="btn btn-outline border hover:bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold w-28"
                   >
                     Sign Up
