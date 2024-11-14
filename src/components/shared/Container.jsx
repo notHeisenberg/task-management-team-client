@@ -9,6 +9,6 @@ const Container = ( {children}) => {
 };
 // prop-types validation
 Container.propTypes = {
-    children: PropTypes.string,
+    children: PropTypes.object,
   };
 export default Container;

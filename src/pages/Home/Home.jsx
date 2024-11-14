@@ -1,11 +1,13 @@
+import Banner from "./Banner/Banner";
 import NavBar from "./HomeComponents/Navbar/NavBar";
 
 
 const Home = () => {
     return (
-        <div className="bg-gradient-to-r from-gray-50 to-gray-200">
-            <div className="container mx-auto relative z-10">
+        <div className="bg-hero-pattern">
+            <div className="">
                 <NavBar />
+                <Banner />
             </div>
         </div>
     );
