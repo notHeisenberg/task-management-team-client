@@ -23,7 +23,7 @@ const Banner = () => {
 
                 {/* Button component centered */}
                 <div className="flex justify-center my-6">
-                    <Link to={'/signup'}>
+                    <Link to={'/auth'}>
                         <Button text="Get Started" />
                     </Link>
                 </div>
