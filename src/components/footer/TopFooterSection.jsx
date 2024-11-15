@@ -5,7 +5,7 @@ const TopFooterSection = ({ sectionHeading, sectionList }) => {
 
     return (
         <div className="w-full md:w-2/6 lg:w-1/6">
-            <h4 className="text-gray-200 font-bold pb-3">{sectionHeading}</h4>
+            <h4 className="text-pink-400 font-bold pb-3">{sectionHeading}</h4>
             <div className="pb-10">
                 <ul className="text-gray-200 flex flex-col gap-3">
                     {

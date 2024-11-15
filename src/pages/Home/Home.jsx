@@ -1,4 +1,6 @@
 import Banner from "./Banner/Banner";
+import CoreFeatures from "./CoreFeatures/CoreFeatures";
+import GetStarted from "./GetStarted/GetStarted";
 import NavBar from "./HomeComponents/Navbar/NavBar";
 
 
@@ -8,6 +10,8 @@ const Home = () => {
             <div className="">
                 <NavBar />
                 <Banner />
+                <CoreFeatures />
+                <GetStarted />
             </div>
         </div>
     );
