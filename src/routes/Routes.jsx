@@ -1,4 +1,5 @@
 import Root from "@/layout/Root";
+import Auth from "@/pages/Auth/Auth";
 import ErrorPage from "@/pages/Error/ErrorPage";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login/Login";
@@ -17,17 +18,19 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: "login",
-                element: <Login></Login>
-            },
-            {
-                path: "signup",
-                element: <SignUp></SignUp>
+                path: "auth",
+                element: <Auth />
             },
         ]
-
-
-
+    },
+     // signin & signup
+     {
+        path: "login",
+        element: <Login></Login>
+    },
+    {
+        path: "signup",
+        element: <SignUp></SignUp>
     },
 ]);
 

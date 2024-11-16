@@ -1,12 +1,13 @@
-// Root.jsx
+
+import Footer from "@/components/footer/Footer";
 import { Outlet } from "react-router-dom";
 
 const Root = () => {
 
   return (
     <div>
-      {/* Other layout components */}
       <Outlet />
+      <Footer />
     </div>
   );
 };

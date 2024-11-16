@@ -1,145 +1,137 @@
+import Button from "@/components/shared/Button";
+import Container from "@/components/shared/Container";
 import { useState } from "react";
-import { IoHome } from "react-icons/io5";
-import { MdDashboard, MdLogout } from "react-icons/md"; // Import the icons
-import { Link } from "react-router-dom";
-import logo from "../../../../assets/logo.svg";
-import useAuth from "../../../../hooks/useAuth";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { RxCross2 } from "react-icons/rx";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-  const { user, logOut } = useAuth();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [getMenu, setMenu] = useState(false);
+  const [navbar, setNavbar] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logOut()
-      .then(() => {
-
-        localStorage.removeItem("access-token");
-        navigate("/");
-      })
-      .catch((error) => {
-      });
-  };
-
-  // Toggle dropdown
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  // Change Background When Scrolled
-  document.addEventListener('scroll', () => {
-    if (window.scrollY > 800) {
-      setScrolled(true);
+  const changeBackground = () => {
+    if (window.scrollY >= 32) {
+      setNavbar(true);
     } else {
-      setScrolled(false);
+      setNavbar(false);
     }
-  })
+  };
+  window.addEventListener("scroll", changeBackground);
 
-  const navLinks = (
-    <>
-      <Link
-        className={`navbar-item capitalize md:text-white hover:text-white hover:border-[#a2deff] rounded-none pb-2 font-medium lg:text-lg`}
-        to={"#home"}
-      >
-        home
-      </Link>
-      <Link
-        className={`navbar-item capitalize md:text-white hover:text-white hover:border-[#a2deff] rounded-none pb-2 font-medium lg:text-lg`}
-        to={"#partners"}
-      >
-        partners
-      </Link>
-      <Link
-        className={`navbar-item capitalize md:text-white hover:text-white hover:border-[#a2deff] rounded-none pb-2 font-medium lg:text-lg`}
-        to={"#features"}
-      >
-        features
-      </Link>
-      <Link
-        className={`navbar-item capitalize md:text-white hover:text-white hover:border-[#a2deff] rounded-none pb-2 font-medium lg:text-lg`}
-        to={"#advantage"}
-      >
-        advantage
-      </Link>
-      <Link
-        className={`navbar-item capitalize md:text-white hover:text-white hover:border-[#a2deff] rounded-none pb-2 font-medium lg:text-lg`}
-        to={"#faq"}
-      >
-        FAQ{"'"}s
-      </Link>
-    </>
-  );
+  const navLinks = [
+    { title: "Products", path: "/products" },
+    { title: "User Cases", path: "/user-cases" },
+    { title: "Learn", path: "/learn" },
+    { title: "Pricing", path: "/pricing" },
+    { title: "Enterprise", path: "/enterprise" },
+    { title: "Request Demo", path: "/request-demo" },
+  ];
+
+  const handleClick = () => {
+    navigate("/");
+  };
 
   return (
-    <div className="">
-      <div className={`navbar px-4 ${scrolled ? "bg-[#0d0428]" : "bg-transparent"} shadow-lg shadow-[#0d0427] navbar-sticky mx-auto backdrop-blur-2xl flex items-center justify-center`}>
-        <div className="container mx-auto flex items-center">
-          <div className="navbar-start">
-            <a href="#">
-              <img className="w-auto h-10" src={logo} alt="" />
-            </a>
-          </div>
-          <div className="navbar-center hidden md:flex">{navLinks}</div>
-          <div className="navbar-end">
+    <>
+      <nav className={navbar ? "bg-primary fixed w-full z-30" : "bg-primary shadow fixed w-full"}>
+        <Container>
+          <div className="">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center text-white py-6">
+              <div onClick={handleClick} className="w-[12%] text-3xl font-bold cursor-pointer">
+                Airtable
+              </div>
+              <div className="w-[54%] flex gap-6">
+                {navLinks.map((item, idx) => (
+                  <a href={item.path} key={idx} className="text-lg font-semibold">
+                    {item.title}
+                  </a>
+                ))}
+              </div>
+              <div className="w-[32%] flex justify-end items-center gap-6">
+                <p className="font-semibold">Contact Sales</p>
+                {/* Login Button */}
+                <Link
+                  to={"/auth"}
+                  className="relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md"
+                >
+                  <span className="w-full h-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] absolute"></span>
+                  <span className="relative px-6 py-2 transition-all ease-out bg-gray-900 rounded-md group-hover:bg-opacity-0 duration-400">
+                    <span className="relative text-white">Login</span>
+                  </span>
+                </Link>
+                {/* Get Started Button */}
+                <Link to={"/auth"}>
+                  <Button text={"Get Started"} />
+                </Link>
+              </div>
+            </div>
 
-            {/* Dropdown*/}
-            <div className=" md:flex">
-              {user ? (
-                <>
-                  <div className="relative">
-                    <div
-                      className="avatar cursor-pointer"
-                      onClick={toggleDropdown}
-                    >
-                      <img src={user?.photoURL} alt="avatar" className="hover:p-0.5" />
-                    </div>
-                    {isDropdownOpen && (
-                      <div className="absolute right-0 mt-2 py-2 w-40 bg-white shadow-xl rounded-lg z-20 ">
-                        <Link to={"/room"}>
-                          <p className="dropdown-item text-sm flex-row items-center gap-2">
-                            <IoHome /> Explore Meeting
-                          </p>
-                        </Link>
-                        <Link to={"/dashboard"}>
-                          <p className="dropdown-item text-sm flex-row items-center gap-2">
-                            {" "}
-                            {/* <IoMdPerson /> {user?.displayName} */}{" "}
-                            <MdDashboard /> Dashboard
-                          </p>
-                        </Link>
-                        <div
-                          onClick={handleLogout}
-                          tabIndex="-1"
-                          className="dropdown-item text-sm flex-row items-center gap-2"
-                        >
-                          <MdLogout /> Logout
-                        </div>
-                      </div>
+            {/* Mobile Navigation */}
+            <div className="lg:hidden text-white py-6">
+              <div className="flex justify-between items-center">
+                <div onClick={handleClick} className="w-[16%] text-3xl font-bold cursor-pointer">
+                  Airtable
+                </div>
+                <div className="flex items-center gap-3">
+                  <div>
+                    {/* Get Started Button */}
+                    <Link to={"signup"}>
+                      <Button text={"Get Started"} />
+                    </Link>
+                  </div>
+                  {/* Animated Hamburger/Cross Icon */}
+                  <div
+                    className={`text-white cursor-pointer transition-transform duration-300 ease-in-out ${
+                      getMenu ? "rotate-90" : "rotate-0"
+                    }`}
+                    onClick={() => setMenu(!getMenu)}
+                  >
+                    {getMenu ? (
+                      <RxCross2 className="text-4xl transform transition-transform duration-300" />
+                    ) : (
+                      <GiHamburgerMenu className="text-4xl transform transition-transform duration-300" />
                     )}
                   </div>
-                </>
-              ) : (
-                <div className="navbar-end flex items-center mt-2 -mx-2 sm:mt-0 space-x-3">
-                  <Link
-                    to="/login"
-                    className="btn btn-solid-primary bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold w-28"
-                  >
-                    Log In
-                  </Link>
-
-                  <Link
-                    to="/signup"
-                    className="btn btn-outline border hover:bg-gradient-to-r from-pink-500 to-blue-500 text-white font-semibold w-28"
-                  >
-                    Sign Up
-                  </Link>
                 </div>
-              )}
+              </div>
+
+              {/* Drawer Menu */}
+              <div
+                className={`fixed top-[92px] right-0 h-full w-2/3 bg-primary text-white transform ${
+                  getMenu ? "translate-x-0" : "translate-x-full"
+                } transition-transform duration-300 ease-in-out lg:hidden z-[50]`}
+              >
+                <div className="flex flex-col items-start p-6">
+                  {navLinks.map((item, idx) => (
+                    <a
+                      href={item.path}
+                      key={idx}
+                      className="text-lg font-semibold py-2 border-b border-gray-600 w-full"
+                      onClick={() => setMenu(false)}
+                    >
+                      {item.title}
+                    </a>
+                  ))}
+                  <div className="w-full mx-auto my-4">
+                    <Link
+                      to={"/login"}
+                      className="relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md"
+                    >
+                      <span className="w-full h-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] absolute"></span>
+                      <span className="relative px-6 py-2 transition-all ease-out bg-gray-900 rounded-md group-hover:bg-opacity-0 duration-400">
+                        <span className="relative text-white">Login</span>
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </Container>
+      </nav>
+    </>
   );
 };
 
