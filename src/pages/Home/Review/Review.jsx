@@ -4,8 +4,11 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import img01 from "../../../assets/background5.jpg";
+import img01 from "../../../assets/review/mahfuz.png";
+import img02 from "../../../assets/review/gazi.png";
+import img03 from "../../../assets/review/almas.png";
 import { FaQuoteLeft } from "react-icons/fa";
+import Container from "@/components/shared/Container";
 
 const Review = () => {
   const [timeLeft, setTimeLeft] = useState(0); // Timer state to control countdown
@@ -25,12 +28,9 @@ const Review = () => {
     {
       quote: "Awesome Coding",
       review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo tempore corporis tempora fuga ad autem error soluta. \
-        Aenean venenatis ligula a ex tristique, et varius erat placerat. Integer sodales libero eget nisi tincidunt, nec consequat \
-        lacus dignissim. Fusce malesuada velit vel ligula auctor, eget pharetra felis luctus. Nam eget risus felis. Sed vel magna \
-        et velit ultrices fermentum. Proin auctor justo in arcu sodales, a feugiat felis faucibus. Duis sagittis faucibus justo",
+        "Coding is an art that turns ideas into reality. Every line of code builds logic, functionality, and beauty into solutions for complex problems. From algorithms to UI design, it’s a journey of creativity and precision. Debugging sharpens skills, while learning new technologies fuels innovation. Awesome coding is not just about syntax but about solving real-world challenges with passion, collaboration, and resilience. Code changes the world—one program at a time.",
       rating: 4,
-      name: "John Doe",
+      name: "Mahfuz Ifte",
       image: img01,
     },
     {
@@ -41,8 +41,8 @@ const Review = () => {
         fermentum a non lorem. Mauris auctor bibendum turpis, quis dignissim justo faucibus non. Nullam congue urna id \
         purus convallis, vel sodales est pharetra. Praesent accumsan luctus libero, non tempus erat eleifend et. Duis ut \ ",
       rating: 5,
-      name: "Jane Smith",
-      image: img01,
+      name: "Takbir Gazi",
+      image: img02,
     },
     {
       quote: "Exceptional Design",
@@ -52,13 +52,14 @@ const Review = () => {
         vehicula, ac pharetra augue viverra. Suspendisse eget tortor suscipit, faucibus turpis sed, luctus velit. Nam eget \
         neque sed erat ultrices aliquam. Aenean interdum convallis ligula, nec vulputate nisi volutpat a. Integer sagittis " ,
       rating: 5,
-      name: "Emily Johnson",
-      image: img01,
+      name: "Almas Hossain",
+      image: img03,
     },
   ];
 
   return (
-    <div className="w-full flex justify-center text-white my-10">
+    <Container>
+      <div className="w-full flex justify-center text-white my-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -90,7 +91,7 @@ const Review = () => {
               <div className="flex justify-between items-center gap-3">
                 <div className="flex gap-3">
                   <img
-                    className="w-10 h-10 rounded-full"
+                    className="w-12 h-12 rounded-full"
                     src={review.image}
                     alt={review.name}
                   />
@@ -116,6 +117,7 @@ const Review = () => {
         ))}
       </Swiper>
     </div>
+    </Container>
   );
 };
 

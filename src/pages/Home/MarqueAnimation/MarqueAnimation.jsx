@@ -2,10 +2,10 @@ import styled from "styled-components";
 import Marquee from "react-fast-marquee";
 import img01 from "../../../assets/marqueLogo/microsof.png";
 import img02 from "../../../assets/marqueLogo/google.png";
-import img03 from "../../../assets/marqueLogo/tesla.png";
-import img04 from "../../../assets/marqueLogo/samsung.png";
-import img05 from "../../../assets/marqueLogo/cocakola.png";
-import img06 from "../../../assets/marqueLogo/puma.png";
+import img03 from "../../../assets/marqueLogo/toyto.png";
+import img04 from "../../../assets/marqueLogo/tesla.png";
+import img05 from "../../../assets/marqueLogo/samsung.png";
+import img06 from "../../../assets/marqueLogo/oracle.png";
 import img07 from "../../../assets/marqueLogo/sonny.png";
 
 const MarquePage = () => {
