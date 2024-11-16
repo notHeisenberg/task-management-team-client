@@ -28,10 +28,7 @@ const Review = () => {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nemo tempore corporis tempora fuga ad autem error soluta. \
         Aenean venenatis ligula a ex tristique, et varius erat placerat. Integer sodales libero eget nisi tincidunt, nec consequat \
         lacus dignissim. Fusce malesuada velit vel ligula auctor, eget pharetra felis luctus. Nam eget risus felis. Sed vel magna \
-        et velit ultrices fermentum. Proin auctor justo in arcu sodales, a feugiat felis faucibus. Duis sagittis faucibus justo, \
-        ut suscipit ex vestibulum id. Cras nec purus lacus. Integer nec tristique orci. Nam id massa a eros interdum dapibus. \
-        Etiam in lectus vitae justo dictum feugiat a sit amet libero. Phasellus scelerisque ligula ac leo accumsan, eu pharetra \
-        metus porttitor. Suspendisse id justo vitae nisl vehicula convallis non sit amet arcu.",
+        et velit ultrices fermentum. Proin auctor justo in arcu sodales, a feugiat felis faucibus. Duis sagittis faucibus justo",
       rating: 4,
       name: "John Doe",
       image: img01,
@@ -42,10 +39,7 @@ const Review = () => {
         "Hic culpa eos fugit, veritatis quo placeat modi temporibus quis, earum nobis provident libero tenetur. \
         Vivamus lacinia eros ut nisi congue, in condimentum ligula vestibulum. Curabitur vel neque a felis malesuada \
         fermentum a non lorem. Mauris auctor bibendum turpis, quis dignissim justo faucibus non. Nullam congue urna id \
-        purus convallis, vel sodales est pharetra. Praesent accumsan luctus libero, non tempus erat eleifend et. Duis ut \
-        velit justo. Sed fermentum neque non justo sagittis ultrices. Donec pharetra risus eget arcu tempor, sit amet \
-        ultrices ligula vehicula. Aenean et sapien eu justo hendrerit tincidunt non non arcu. Cras tincidunt vehicula nunc \
-        eget rhoncus. Nulla aliquet augue a orci feugiat, et sodales elit posuere. Proin in sem et quam blandit dignissim.",
+        purus convallis, vel sodales est pharetra. Praesent accumsan luctus libero, non tempus erat eleifend et. Duis ut \ ",
       rating: 5,
       name: "Jane Smith",
       image: img01,
@@ -56,10 +50,7 @@ const Review = () => {
         "Molestias adipisci mollitia similique neque esse ratione eos reprehenderit sint. Ut auctor erat sed arcu feugiat \
         ullamcorper. Duis vel dapibus sem. Mauris interdum purus at volutpat malesuada. Pellentesque cursus felis eget ante \
         vehicula, ac pharetra augue viverra. Suspendisse eget tortor suscipit, faucibus turpis sed, luctus velit. Nam eget \
-        neque sed erat ultrices aliquam. Aenean interdum convallis ligula, nec vulputate nisi volutpat a. Integer sagittis, \
-        nisi sit amet vehicula dapibus, justo nunc dignissim justo, et dignissim felis ligula vitae enim. Sed ac nibh ac ex \
-        finibus iaculis. Donec suscipit id tortor a fringilla. Vestibulum sit amet bibendum urna, nec dictum mi. Aliquam erat \
-        volutpat. Mauris sodales congue felis ut vehicula. Suspendisse malesuada dolor vel dolor posuere, eget tempor ipsum ultricies.",
+        neque sed erat ultrices aliquam. Aenean interdum convallis ligula, nec vulputate nisi volutpat a. Integer sagittis " ,
       rating: 5,
       name: "Emily Johnson",
       image: img01,
@@ -67,7 +58,7 @@ const Review = () => {
   ];
 
   return (
-    <div className="w-full h-screen flex items-center justify-center text-white">
+    <div className="w-full flex justify-center text-white my-10">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -81,17 +72,17 @@ const Review = () => {
         modules={[Autoplay, Pagination]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}  // Update timer
         onSlideChange={onSlideChange}  // Reset timer on slide change
-        className="mySwiper w-3/4"
+        className="mySwiper max-w-4xl"
       >
         {reviews.map((review, index) => (
           <SwiperSlide key={index}>
-            <div className="border p-6 rounded space-y-3">
-              <div className="flex items-end">
+            <div className="border border-gray-800 p-8 rounded-xl space-y-3">
+              <div className="flex gap-2 items-end">
                 <FaQuoteLeft className="text-7xl" />
                 <h3 className="text-2xl font-bold">{review.quote}</h3>
               </div>
               <p>{review.review}</p>
-              <p className="flex items-center gap-3">
+              <p className="flex items-center text-yellow-200 text-3xl font-bold gap-3">
                 {[...Array(review.rating)].map((_, i) => (
                   <span key={i}>&#9733;</span> // Star icon
                 ))}

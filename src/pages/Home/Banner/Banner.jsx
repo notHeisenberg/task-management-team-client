@@ -6,7 +6,7 @@ import banner2x from '../../../assets/banner/Homepage-hero@2x.webp';
 
 const Banner = () => {
     return (
-        <div className="bg-hero-pattern pt-[140px]">
+        <div className=" pt-[140px]">
             <Container>
                 <div className="space-y-4 text-center">
                     {/* Responsive heading */}

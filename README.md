@@ -43,6 +43,7 @@ http://localhost:5173
 - Tailwind CSS (styling)
 - [React Icons (icons)](https://react-icons.github.io/react-icons)
 - [React-marquee](https://www.npmjs.com/package/react-fast-marquee)
+- [React-marquee-style](https://www.npmjs.com/package/styled-components)
 - [React-swiper](https://swiperjs.com/get-started)
 
 

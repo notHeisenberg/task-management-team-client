@@ -10,7 +10,7 @@ const Footer = () => {
     const compare = ["Compare Plans", "Alternatives", "Case Studies", "Success Stories", "Customer Reviews"];
 
     return (
-        <div className="bg-primary shadow py-5">
+        <div className=" shadow py-5">
             <Container>
                 {/* Header Section */}
                 <div className="pb-5 pt-14 gap-5 flex flex-col md:flex-row">
