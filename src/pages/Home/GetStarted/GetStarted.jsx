@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const GetStarted = () => {
     return (
-        <div className="container mx-auto py-10 ">
+        <div className="container mx-auto  lg:py-10 lg:p-0 p-10 ">
             <div className="relative p-[2px] bg-[#1d1e1f] rounded-xl bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-500">
                 <div className="bg-[#1d1e1f] p-6 rounded-xl shadow-lg">
                     <div className="flex items-center mx-24 justify-around flex-col md:flex-row gap-2">
