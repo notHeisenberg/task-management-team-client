@@ -1,5 +1,10 @@
 import Root from "@/layout/Root";
 import Auth from "@/pages/Auth/Auth";
+import Apps from "@/pages/Dashboard/Apps/Apps";
+import Calender from "@/pages/Dashboard/Calender/Calender";
+import Dashboard from "@/pages/Dashboard/Dashboard";
+import DashboardHome from "@/pages/Dashboard/DashboardHome/DashboardHome";
+import Settings from "@/pages/Dashboard/Settings/Settings";
 import ErrorPage from "@/pages/Error/ErrorPage";
 import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login/Login";
@@ -23,8 +28,8 @@ const router = createBrowserRouter([
             },
         ]
     },
-     // signin & signup
-     {
+    // signin & signup
+    {
         path: "login",
         element: <Login></Login>
     },
@@ -32,6 +37,28 @@ const router = createBrowserRouter([
         path: "signup",
         element: <SignUp></SignUp>
     },
-]);
+    {
+        path: "dashboard",
+        element: <Dashboard />,
+        children: [
+            {
+                path: "",
+                element: <DashboardHome />
+            },
+            {
+                path: "calendar",
+                element: <Calender />,
+            },
+            {
+                path: "settings",
+                element: <Settings />,
+            },
+            {
+                path: "apps",
+                element: <Apps />,
+            },
+        ]
+    }
+])
 
 export default router;
