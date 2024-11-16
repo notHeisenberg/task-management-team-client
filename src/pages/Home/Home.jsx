@@ -2,6 +2,7 @@ import Banner from "./Banner/Banner";
 import CoreFeatures from "./CoreFeatures/CoreFeatures";
 import GetStarted from "./GetStarted/GetStarted";
 import NavBar from "./HomeComponents/Navbar/NavBar";
+import Review from "./Review/Review";
 
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
             <div className="">
                 <NavBar />
                 <Banner />
+                <Review />
                 <CoreFeatures />
                 <GetStarted />
             </div>
