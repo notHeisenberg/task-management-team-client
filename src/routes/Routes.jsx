@@ -1,4 +1,5 @@
 import Root from "@/layout/Root";
+import Contact from "@/pages/Contact/Contact";
 import Auth from "@/pages/Auth/Auth";
 import ErrorPage from "@/pages/Error/ErrorPage";
 import Home from "@/pages/Home/Home";
@@ -21,10 +22,14 @@ const router = createBrowserRouter([
                 path: "auth",
                 element: <Auth />
             },
+            {
+                path: "contact",
+                element: <Contact />
+            }
         ]
     },
-     // signin & signup
-     {
+    // signin & signup
+    {
         path: "login",
         element: <Login></Login>
     },
