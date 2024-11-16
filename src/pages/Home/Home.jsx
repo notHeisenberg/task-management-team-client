@@ -1,5 +1,6 @@
 import Banner from "./Banner/Banner";
 import CoreFeatures from "./CoreFeatures/CoreFeatures";
+import Faq from "./FaqSection/Faq";
 import GetStarted from "./GetStarted/GetStarted";
 import NavBar from "./HomeComponents/Navbar/NavBar";
 
@@ -11,6 +12,7 @@ const Home = () => {
                 <NavBar />
                 <Banner />
                 <CoreFeatures />
+                <Faq />
                 <GetStarted />
             </div>
         </div>
