@@ -1,4 +1,5 @@
 import Root from "@/layout/Root";
+import Contact from "@/pages/Contact/Contact";
 import Auth from "@/pages/Auth/Auth";
 import Apps from "@/pages/Dashboard/Apps/Apps";
 import Calender from "@/pages/Dashboard/Calender/Calender";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
                 path: "auth",
                 element: <Auth />
             },
+            {
+                path: "contact",
+                element: <Contact />
+            }
         ]
     },
     // signin & signup
