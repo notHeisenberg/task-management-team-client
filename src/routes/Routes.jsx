@@ -11,7 +11,9 @@ import Home from "@/pages/Home/Home";
 import Login from "@/pages/Login/Login";
 import SignUp from "@/pages/SignUp/SignUp";
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 import About from "@/pages/About/About";
+
 
 
 const router = createBrowserRouter([
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
     // dashboard route
     {
         path: "dashboard",
-        element: <Dashboard />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 path: "",

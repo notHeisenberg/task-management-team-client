@@ -23,6 +23,7 @@ export function DropdownMenuDemo() {
 
     const handleLogOutClick = () => {
         logOut();
+        navigate('/');
     };
 
     return (
@@ -37,7 +38,7 @@ export function DropdownMenuDemo() {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem onClick={handleProfileClick}>
-                        Profile
+                        Dashboard
                         <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
                     </DropdownMenuItem>
                 </DropdownMenuGroup>

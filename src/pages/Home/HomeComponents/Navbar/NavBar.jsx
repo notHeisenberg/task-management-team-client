@@ -42,24 +42,24 @@ const NavBar = () => {
         <Container>
           <div className="">
             {/* Desktop Navigation */}
+
             <div className="hidden lg:flex items-center text-white py-6">
               <div onClick={handleClick} className="w-[12%] text-3xl font-bold cursor-pointer">
                 Taskifyx
               </div>
               <div className="w-[54%] flex gap-6">
                 {navLinks.map((item, idx) => (
-                  <a href={item.path} key={idx} className="text-lg font-semibold">
+                  <a href={item.path} key={idx} className="text-lg font-semibold hover:underline hover:text-pink-400">
                     {item.title}
                   </a>
                 ))}
               </div>
-              <div className="w-[32%] flex justify-end items-center gap-6">
+              <div className=" flex justify-end items-center gap-6">
 
                 {user ?
                   <DropdownMenuDemo />
                   :
                   <>
-                    <p className="font-semibold">Contact Sales</p>
                     {/* Login Button */}
                     <Link
                       to={"/auth"}
@@ -86,26 +86,31 @@ const NavBar = () => {
                 <div onClick={handleClick} className="w-[16%] text-3xl font-bold cursor-pointer">
                   Taskifyx
                 </div>
-                <div className="flex items-center gap-3">
-                  <div>
-                    {/* Get Started Button */}
-                    <Link to={"auth"}>
-                      <Button text={"Get Started"} />
-                    </Link>
-                  </div>
-                  {/* Animated Hamburger/Cross Icon */}
-                  <div
-                    className={`text-white cursor-pointer transition-transform duration-300 ease-in-out ${getMenu ? "rotate-90" : "rotate-0"
-                      }`}
-                    onClick={() => setMenu(!getMenu)}
-                  >
-                    {getMenu ? (
-                      <RxCross2 className="text-4xl transform transition-transform duration-300" />
-                    ) : (
-                      <GiHamburgerMenu className="text-4xl transform transition-transform duration-300" />
-                    )}
-                  </div>
-                </div>
+                {
+                  user ?
+                    <DropdownMenuDemo />
+                    :
+                    <div className="flex items-center gap-3">
+                      <div>
+                        {/* Get Started Button */}
+                        <Link to={"auth"}>
+                          <Button text={"Get Started"} />
+                        </Link>
+                      </div>
+                      {/* Animated Hamburger/Cross Icon */}
+                      <div
+                        className={`text-white cursor-pointer transition-transform duration-300 ease-in-out ${getMenu ? "rotate-90" : "rotate-0"
+                          }`}
+                        onClick={() => setMenu(!getMenu)}
+                      >
+                        {getMenu ? (
+                          <RxCross2 className="text-4xl transform transition-transform duration-300" />
+                        ) : (
+                          <GiHamburgerMenu className="text-4xl transform transition-transform duration-300" />
+                        )}
+                      </div>
+                    </div>
+                }
               </div>
 
               {/* Drawer Menu */}
