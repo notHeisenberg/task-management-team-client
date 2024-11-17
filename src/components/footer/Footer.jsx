@@ -17,7 +17,7 @@ const Footer = () => {
                     <div className="w-full md:w-4/6 lg:w-2/6 flex-grow">
                         <div className="pb-10">
                             <NavLink>
-                                <h4 className="text-4xl font-bold text-gray-200">Airtable</h4>
+                                <h4 className="text-4xl font-bold text-gray-200">Taskifyx</h4>
                             </NavLink>
                         </div>
                         <div className="pb-10">

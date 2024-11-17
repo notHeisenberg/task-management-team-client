@@ -9,7 +9,7 @@ const GetStarted = () => {
                         {/* Text and Button Section */}
                         <div className="flex flex-col items-start md:items-start text-start md:text-left space-y-4 w-fit">
                             <h2 className="text-3xl font-bold text-white">
-                                See for yourself why successful teams use <br /> <span className="text-pink-500">Airtable</span>
+                                See for yourself why successful teams use <br /> <span className="text-pink-500">Taskifyx</span>
                             </h2>
                             <NavLink to={'/auth'} className="elementor-button bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-6 rounded-md shadow-lg hover:from-purple-500 hover:to-blue-500 transition duration-300">
                                 Get Started

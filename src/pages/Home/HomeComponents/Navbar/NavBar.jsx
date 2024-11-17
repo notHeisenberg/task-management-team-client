@@ -26,7 +26,7 @@ const NavBar = () => {
   const navLinks = [
     { title: "Products", path: "/products" },
     { title: "User Cases", path: "/user-cases" },
-    { title: "About", path: "/about" },
+    { title: "About Us", path: "/about" },
     { title: "Pricing", path: "/pricing" },
     { title: "Enterprise", path: "/enterprise" },
     { title: "Request Demo", path: "/request-demo" },
@@ -44,7 +44,7 @@ const NavBar = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center text-white py-6">
               <div onClick={handleClick} className="w-[12%] text-3xl font-bold cursor-pointer">
-                Airtable
+                Taskifyx
               </div>
               <div className="w-[54%] flex gap-6">
                 {navLinks.map((item, idx) => (
@@ -84,7 +84,7 @@ const NavBar = () => {
             <div className="lg:hidden text-white py-6">
               <div className="flex justify-between items-center">
                 <div onClick={handleClick} className="w-[16%] text-3xl font-bold cursor-pointer">
-                  Airtable
+                  Taskifyx
                 </div>
                 <div className="flex items-center gap-3">
                   <div>

@@ -1,8 +1,8 @@
 import Container from "@/components/shared/Container";
 import Button from "@/components/shared/Button";
 import { Link } from "react-router-dom";
-import banner from '../../../assets/banner/homepage-image.webp';
-import banner2x from '../../../assets/banner/Homepage-hero@2x.webp';
+import banner from '../../../assets/banner/banner01.png';
+// import banner2x from '../../../assets/banner/Homepage-hero@2x.webp';
 
 const Banner = () => {
     return (
@@ -37,11 +37,11 @@ const Banner = () => {
                         className="block sm:hidden w-full max-w-screen-lg" 
                     />
                     {/* Image for medium and larger screens */}
-                    <img 
+                    {/* <img 
                         src={banner2x} 
                         alt="banner image" 
                         className="hidden sm:block w-full max-w-screen-lg" 
-                    />
+                    /> */}
                 </div>
             </Container>
         </div>
