@@ -2,9 +2,31 @@
 import { Input } from "@/components/ui/input";
 import { DropdownMenuDemo } from "@/components/DropdownDemo/DropdownMenuDemo";
 import useAuth from "@/hooks/useAuth";
+import { useEffect, useState } from "react";
+import { axiosCommon } from "@/hooks/useAxiosCommon";
 
 export function Navbar() {
   const { user } = useAuth()
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    if (user?.email) {
+      axiosCommon.get(`/user/${user.email}`)
+        .then((res) => {
+          if (res.data) {
+            // console.log("User data:", res.data);
+            setRole(res.data.role == "general-user" ? "User" : "Admin");
+          } else {
+            console.log("No user found");
+          }
+        })
+        .catch((err) => {
+          console.error("Error fetching user data:", err);
+        });
+    }
+  }, [user?.email]);
+  
+
   return (
     <div className="w-full border-b shadow-md p-4 flex items-center justify-between">{ }
       <div className="text-xl font-bold">ArtTable</div>
@@ -42,7 +64,7 @@ export function Navbar() {
         <DropdownMenuDemo />
         <div className="hidden md:flex flex-col flex-wrap justify-center">
           <h1 className="text-sm font-semibold">{user?.displayName}</h1>
-          <p className="text-xs">User</p>
+          <p className="text-xs">{role}</p>
         </div>
       </div>
     </div>

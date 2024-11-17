@@ -1,8 +1,8 @@
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
 import useAuth from "../hooks/useAuth";
-import Logo_main from '../assets/images/logo_main.png'
-import Logo_outline from '../assets/images/logo_outline.png'
+import Logo_main from '../assets/logo.svg'
+import Logo_outline from '../assets/react.svg'
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
@@ -30,7 +30,7 @@ const PrivateRoute = ({ children }) => {
 
     // Redirect to login if no user is authenticated
     if (!user) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
+        return <Navigate to="/auth" state={{ from: location }} replace />;
     }
 
     // Render the child components if user is authenticated

@@ -42,6 +42,7 @@ http://localhost:5173
 - React
 - Tailwind CSS (styling)
 - [React Icons (icons)](https://react-icons.github.io/react-icons)
+- react-hot-toast
 
 
 ### Support
