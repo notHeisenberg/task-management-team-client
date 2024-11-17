@@ -6,7 +6,7 @@ import { FaAppStore } from "react-icons/fa";
 
 // Menu items
 const topItems = [
-  { title: "Home", url: "/dashboard", icon: Home },
+  { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Calendar", url: "/dashboard/calendar", icon: Calendar },
 ];
 

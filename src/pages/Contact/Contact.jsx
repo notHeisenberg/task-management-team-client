@@ -1,6 +1,7 @@
 import Container from "@/components/shared/Container";
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import NavBar from "../Home/HomeComponents/Navbar/NavBar";
 
 
 const Contact = () => {
@@ -30,9 +31,10 @@ const Contact = () => {
 
     return (
         <div className="bg-primary">
+            <NavBar />
             <Container>
                 <div className="pt-20">
-                    <div className='max-w-[1440px] mx-auto pb-10'>
+                    <div className='max-w-[1440px] mx-auto pb-10 mt-10'>
                         <div className='w-full'>
                             <h2 className='text-3xl font-bold text-gray-100 text-center pb-8 underline underline-offset-8 '>Contact Us</h2>
                             <div className='w-full py-5'>

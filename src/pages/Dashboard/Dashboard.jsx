@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   return (
     <SidebarProvider>
-      <div className="flex h-screen w-screen">
+      <div className="flex h-screen w-screen bg-white">
         {/* Sidebar */}
         <div
           className={clsx(
