@@ -12,6 +12,8 @@ import Login from "@/pages/Login/Login";
 import SignUp from "@/pages/SignUp/SignUp";
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
+import About from "@/pages/About/About";
+
 
 
 const router = createBrowserRouter([
@@ -31,7 +33,12 @@ const router = createBrowserRouter([
             {
                 path: "contact",
                 element: <Contact />
-            }
+            },
+
+            {
+                path:'about',
+                element:<About />
+            },
         ]
     },
     // signin & signup
@@ -43,6 +50,12 @@ const router = createBrowserRouter([
         path: "signup",
         element: <SignUp></SignUp>
     },
+
+
+    
+
+
+    // dashboard route
     {
         path: "dashboard",
         element: <PrivateRoute><Dashboard /></PrivateRoute>,

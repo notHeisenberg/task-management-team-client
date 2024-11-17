@@ -1,8 +1,8 @@
-# Airtable
+# Taskifyx
 
-Airtable is a modern, responsive task management application built with React, featuring a sleek dark mode UI with glass-morphism effects. The application provides a comprehensive solution for managing daily tasks with advanced sorting, filtering, and persistence capabilities.
+Taskifyx is a modern, responsive task management application built with React, featuring a sleek dark mode UI with glass-morphism effects. The application provides a comprehensive solution for managing daily tasks with advanced sorting, filtering, and persistence capabilities.
 
-[Airtable](https://task-management-22c11.web.app)
+[Taskifyx](https://task-management-22c11.web.app)
 
 ## Getting Started
 
