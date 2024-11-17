@@ -1,8 +1,9 @@
 import Container from "@/components/shared/Container";
 import Button from "@/components/shared/Button";
 import { Link } from "react-router-dom";
-import banner from '../../../assets/banner/homepage-image.webp';
-import banner2x from '../../../assets/banner/Homepage-hero@2x.webp';
+import banner from '../../../assets/banner/banner01.png';
+import banner2x from '../../../assets/banner/banner02.png';
+
 
 const Banner = () => {
     return (
