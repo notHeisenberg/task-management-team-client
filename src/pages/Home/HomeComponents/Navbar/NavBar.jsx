@@ -1,3 +1,4 @@
+
 import { DropdownMenuDemo } from "@/components/DropdownDemo/DropdownMenuDemo";
 import Button from "@/components/shared/Button";
 import Container from "@/components/shared/Container";
@@ -57,7 +58,9 @@ const NavBar = () => {
               <div className=" flex justify-end items-center gap-6">
 
                 {user ?
-                  <DropdownMenuDemo />
+                  <>
+                    <DropdownMenuDemo />
+                  </>
                   :
                   <>
                     {/* Login Button */}
