@@ -5,6 +5,8 @@ import useAuth from "@/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { axiosCommon } from "@/hooks/useAxiosCommon";
 import { NavLink } from "react-router-dom";
+import PopOver from "@/components/PopOver/PopOver";
+
 
 export function Navbar() {
   const { user } = useAuth()
@@ -26,7 +28,7 @@ export function Navbar() {
         });
     }
   }, [user?.email]);
-  
+
 
   return (
     <div className="w-full border-b shadow-md p-4 flex items-center justify-between">{ }
@@ -62,6 +64,7 @@ export function Navbar() {
         className="flex gap-2"
         tabIndex="0"
       >
+        <PopOver />
         <DropdownMenuDemo />
         <div className="hidden md:flex flex-col flex-wrap justify-center">
           <h1 className="text-sm font-semibold">{user?.displayName}</h1>
