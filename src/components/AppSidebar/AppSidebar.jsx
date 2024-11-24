@@ -63,7 +63,8 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
       <span
         className={`p-2 focus:outline-none ${isCollapsed ? "text-center" : "text-start"}`}
       >
-        <SidebarTrigger onClick={handleToggleSidebar}/>
+        <SidebarTrigger
+          onClick={handleToggleSidebar}/>
       </span>
 
       {/* Sidebar Items */}
