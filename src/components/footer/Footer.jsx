@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Container from "../shared/Container";
 import TopFooterSection from "./TopFooterSection";
+import { FaFacebook, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
     const company = ["About", "Contact", "Press", "Careers", "Ambassadors", "Partner Program", "Accessibility"];
@@ -9,32 +10,32 @@ const Footer = () => {
     const compare = ["Compare Plans", "Alternatives", "Case Studies", "Success Stories", "Customer Reviews"];
 
     return (
-        <div className="bg-primary shadow py-5">
+        <div className=" shadow py-5">
             <Container>
                 {/* Header Section */}
-                <div className="pb-5 pt-14 flex gap-5">
-                    <div className="w-full md:w-4/6 lg:w-2/6">
+                <div className="pb-5 pt-14 gap-5 flex flex-col md:flex-row">
+                    <div className="w-full md:w-4/6 lg:w-2/6 flex-grow">
                         <div className="pb-10">
                             <NavLink>
-                                <h4 className="text-4xl font-bold text-gray-200">Airtable</h4>
+                                <h4 className="text-4xl font-bold text-gray-200">Taskifyx</h4>
                             </NavLink>
                         </div>
-                        <div>
+                        <div className="pb-10">
                             <ul className="flex gap-5 items-center text-gray-200">
-                                <li><NavLink>Facebook</NavLink></li>
-                                <li><NavLink>Twitter</NavLink></li>
-                                <li><NavLink>LinkedIn</NavLink></li>
+                                <li><a href="" target="_blank"> <FaFacebook className="text-4xl font-bold text-gray-200" /> </a></li>
+                                <li><a href="" target="_blank"> <FaTwitter className="text-4xl font-bold text-gray-200" /> </a></li>
+                                <li><a href="" target="_blank"> <FaLinkedinIn className="text-4xl font-bold text-gray-200" /> </a></li>
                             </ul>
                         </div>
                     </div>
 
                     {/* Dynamic Section Layout */}
-                    <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-5 w-full">
-                        <TopFooterSection sectionList={company} sectionHeading="Company" />
-                        <TopFooterSection sectionList={features} sectionHeading="Features" />
-                        <TopFooterSection sectionList={resources} sectionHeading="Resources" />
-                        <TopFooterSection sectionList={compare} sectionHeading="Compare" />
-                    </div>
+
+                    <TopFooterSection sectionList={company} sectionHeading="Company" />
+                    <TopFooterSection sectionList={features} sectionHeading="Features" />
+                    <TopFooterSection sectionList={resources} sectionHeading="Resources" />
+                    <TopFooterSection sectionList={compare} sectionHeading="Compare" />
+
                 </div>
 
                 {/* Footer Bottom Section */}

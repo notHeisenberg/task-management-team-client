@@ -12,12 +12,6 @@
     min-height: 480px;
 }
 
-.auth-container p{
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-    margin: 20px 0;
-}
 
 .auth-container span{
     font-size: 12px;

@@ -11,7 +11,7 @@ import {
     updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import useAxiosCommon from "../../hooks/useAxiosCommon";
+import useAxiosCommon, { axiosCommon } from "../../hooks/useAxiosCommon";
 import app from "../FirebaseProivder/FirebaseProvider";
 import PropTypes from 'prop-types';
 
@@ -76,7 +76,7 @@ const AuthProvider = ({ children }) => {
             setLoading(false);
             console.log(currentUser)
             if (currentUser) {
-                axios.post('/jwt', { email: currentUser?.email }, { withCredentials: true })
+                axiosCommon.post('/jwt', { email: currentUser?.email }, { withCredentials: true })
                     .then(res => {
                         localStorage.setItem('access-token', res.data.token);
                     })
