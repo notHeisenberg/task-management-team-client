@@ -69,7 +69,7 @@ const AddChannelModal = ({ isOpen, onClose }) => {
                 channelCode: generateChannelCode(),
                 creatorUserEmail: user?.email,
             },
-            teachers: [],
+            teachers: [{ name: user?.displayName, email: user?.email, image: user?.photoURL }],
             students: [],
         }
         // console.log(channelData)
