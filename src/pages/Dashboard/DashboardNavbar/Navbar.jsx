@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { axiosCommon } from "@/hooks/useAxiosCommon";
 import { NavLink } from "react-router-dom";
 import PopOver from "@/components/PopOver/PopOver";
+import ThemeChange from "@/components/Theme/Theme";
 
 
 export function Navbar() {
@@ -64,6 +65,7 @@ export function Navbar() {
         className="flex gap-2"
         tabIndex="0"
       >
+        <ThemeChange />
         <PopOver />
         <DropdownMenuDemo />
         <div className="hidden md:flex flex-col flex-wrap justify-center">

@@ -40,7 +40,7 @@ const Dashboard = () => {
           <Navbar />
 
           {/* Page Content */}
-          <main className="flex-1 p-4 overflow-auto">
+          <main className="flex-1 p-4 overflow-auto relative">
             <Outlet />
           </main>
         </div>
