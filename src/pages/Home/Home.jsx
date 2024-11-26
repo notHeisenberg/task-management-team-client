@@ -1,3 +1,4 @@
+import Footer from "@/components/footer/Footer";
 import Banner from "./Banner/Banner";
 import CoreFeatures from "./CoreFeatures/CoreFeatures";
 import Faq from "./FaqSection/Faq";
@@ -18,6 +19,7 @@ const Home = () => {
                 <Review />
                 <Faq />
                 <GetStarted />
+                <Footer />
             </div>
         </div>
     );
