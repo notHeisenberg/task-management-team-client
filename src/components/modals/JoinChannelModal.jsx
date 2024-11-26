@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import PropTypes from 'prop-types'
+import useAuth from "@/hooks/useAuth"
+import { axiosCommon } from "@/hooks/useAxiosCommon"
+import { useToast } from "@/hooks/use-toast"
 
 const formSchema = z.object({
   channelCode: z.string().min(1, {
@@ -16,6 +19,8 @@ const formSchema = z.object({
 })
 
 const JoinChannelModal = ({ isOpen, onClose }) => {
+  const { user } = useAuth()
+  const { toast } = useToast()
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -23,12 +28,43 @@ const JoinChannelModal = ({ isOpen, onClose }) => {
     },
   })
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const onSubmit = async (data) => {
+    console.log(data.channelCode)
+    
+    const updatechannelData = {
+      channelCode: data.channelCode,
+      students: { name: user?.displayName, email: user?.email, image: user?.photoURL },
+    }
+    console.log(updatechannelData)
+
     // Handle join channel logic here, e.g., submit to database
-    form.reset()
-    onClose()
+    try {
+      const res = await axiosCommon.patch("/channel", updatechannelData)
+      if (res.status === 201) {
+        toast({
+          variant: "outline",
+          title: "Success",
+          description: "Join successfully",
+        })
+      } else if (res.status === 400) {
+        console.log(res.data)
+        toast({
+          variant: "disruptive",
+          title: "Joined",
+          description: "You are already joined",
+        })
+      }
+      form.reset()
+      onClose()
+    } catch {
+      toast({
+        varient: "destructive",
+        title: "Error",
+        description: "Error joining channel",
+      })
+    }
   }
+  
 
   const handleCancel = () => {
     form.reset()
@@ -62,7 +98,7 @@ const JoinChannelModal = ({ isOpen, onClose }) => {
               )}
             />
             <DialogFooter>
-              
+
             </DialogFooter>
           </form>
         </Form>
