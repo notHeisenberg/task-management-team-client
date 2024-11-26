@@ -39,6 +39,8 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
   // State for managing open/close of collapsible sections
   const [ownedOpen, setOwnedOpen] = useState(false);
   const [enrolledOpen, setEnrolledOpen] = useState(false);
+  const [returnUrl, setReturnUrl] = useState("/dashboard");
+  const [settingsModal, setSettingsModal] = useState(false)
 
   const handleToggleSidebar = () => {
     if (isCollapsed) {
@@ -64,7 +66,7 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
         className={`p-2 focus:outline-none ${isCollapsed ? "text-center" : "text-start"}`}
       >
         <SidebarTrigger
-          onClick={handleToggleSidebar}/>
+          onClick={handleToggleSidebar} />
       </span>
 
       {/* Sidebar Items */}
@@ -185,7 +187,15 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
           <NavLink
             end
             key={item.title}
-            to={item.url}
+            to={returnUrl}
+            onClick={(event) => {
+              if (item?.title == "Settings") {
+                event.preventDefault();
+                setSettingsModal(!settingsModal);
+              } else {
+                setReturnUrl(item?.url);
+              }
+            }}
             className={({ isActive }) =>
               `flex items-center w-full ${isCollapsed ? "justify-center" : "px-4"} py-2 rounded-md transition-colors ${isActive ? "bg-gray-700" : "hover:bg-gray-600"
               }`
@@ -196,6 +206,16 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
           </NavLink>
         ))}
       </nav>
+      {/* Settings Modal Box Start  */}
+      <div className={`${settingsModal && "hidden"} transition-all absolute w-[300px] bottom-[25px] left-[60px]`}>
+        <div className="flex flex-col gap-3 p-5 bg-white border rounded-md shadow-md">
+          <NavLink className="bg-gray-500 rounded py-1 px-3 text-gray-200" to=''>Language</NavLink>
+          <NavLink className="bg-gray-500 rounded py-1 px-3 text-gray-200" to=''>Change Background</NavLink>
+          <NavLink className="bg-gray-500 rounded py-1 px-3 text-gray-200" to=''>Theme</NavLink>
+          <NavLink className="bg-gray-500 rounded py-1 px-3 text-gray-200" to=''>Change Information</NavLink>
+        </div>
+      </div>
+      {/* Settings Modal Box End  */}
     </div>
   );
 }
