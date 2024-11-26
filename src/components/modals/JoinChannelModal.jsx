@@ -64,6 +64,7 @@ const JoinChannelModal = ({ isOpen, onClose }) => {
       })
     }
   }
+  
 
   const handleCancel = () => {
     form.reset()
