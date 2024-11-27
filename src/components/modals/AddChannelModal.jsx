@@ -26,6 +26,8 @@ import { Input } from "@/components/ui/input"
 import { axiosCommon } from "@/hooks/useAxiosCommon"
 import useAuth from "@/hooks/useAuth"
 import { useToast } from "@/hooks/use-toast"
+import { useContext } from "react"
+import { DashboardContext } from "@/providers/DashboardProvider/DashboardContext"
 
 const formSchema = z.object({
     channelName: z.string().min(2, {
@@ -43,6 +45,7 @@ const formSchema = z.object({
 const AddChannelModal = ({ isOpen, onClose }) => {
 
     const { user } = useAuth()
+    const { refetch } = useContext(DashboardContext)
     const { toast } = useToast()
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -91,7 +94,7 @@ const AddChannelModal = ({ isOpen, onClose }) => {
                     description: "Channel already exists",
                 })
             }
-            console.log(res.data)
+            // console.log(res.data)
             form.reset()
             onClose()
         } catch (error) {
@@ -101,6 +104,8 @@ const AddChannelModal = ({ isOpen, onClose }) => {
                 description: "Error adding channel",
             })
             console.error("Error adding channel:", error)
+        } finally {
+            refetch()
         }
     }
 

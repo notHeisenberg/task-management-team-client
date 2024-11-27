@@ -11,6 +11,8 @@ import PropTypes from 'prop-types'
 import useAuth from "@/hooks/useAuth"
 import { axiosCommon } from "@/hooks/useAxiosCommon"
 import { useToast } from "@/hooks/use-toast"
+import { useContext } from "react"
+import { DashboardContext } from "@/providers/DashboardProvider/DashboardContext"
 
 const formSchema = z.object({
   channelCode: z.string().min(1, {
@@ -20,6 +22,7 @@ const formSchema = z.object({
 
 const JoinChannelModal = ({ isOpen, onClose }) => {
   const { user } = useAuth()
+  const { refetch } = useContext(DashboardContext)
   const { toast } = useToast()
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -30,12 +33,12 @@ const JoinChannelModal = ({ isOpen, onClose }) => {
 
   const onSubmit = async (data) => {
     console.log(data.channelCode)
-    
+
     const updatechannelData = {
       channelCode: data.channelCode,
       students: { name: user?.displayName, email: user?.email, image: user?.photoURL },
     }
-    console.log(updatechannelData)
+    // console.log(updatechannelData)
 
     // Handle join channel logic here, e.g., submit to database
     try {
@@ -62,9 +65,11 @@ const JoinChannelModal = ({ isOpen, onClose }) => {
         title: "Error",
         description: "Error joining channel",
       })
+    } finally {
+      refetch()
     }
   }
-  
+
 
   const handleCancel = () => {
     form.reset()

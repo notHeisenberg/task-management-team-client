@@ -13,17 +13,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/colla
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarTrigger } from "../ui/sidebar";
 import { IoMdArrowDropright } from "react-icons/io";
 
-// Owned and Enrolled Channels
-const ownedChannels = [
-  { title: "Owned Channel 1", url: "/dashboard/owned/1" },
-  { title: "Owned Channel 2", url: "/dashboard/owned/2" },
-];
-
-const enrolledChannels = [
-  { title: "Enrolled Channel 1", url: "/dashboard/enrolled/1" },
-  { title: "Enrolled Channel 2", url: "/dashboard/enrolled/2" },
-];
-
 // Menu items
 const topItems = [
   { title: "Home", url: "/dashboard", icon: Home },
@@ -35,36 +24,27 @@ const bottomItems = [
   { title: "Settings", url: "/dashboard/settings", icon: Settings },
 ];
 
-export function AppSidebar({ isCollapsed, toggleSidebar }) {
-  // State for managing open/close of collapsible sections
+export function AppSidebar({ isCollapsed, toggleSidebar, ownedChannels, enrolledChannels }) {
   const [ownedOpen, setOwnedOpen] = useState(false);
   const [enrolledOpen, setEnrolledOpen] = useState(false);
 
   const handleToggleSidebar = () => {
     if (isCollapsed) {
-      // If the sidebar is being expanded, do not change the state of ownedOpen and enrolledOpen
       toggleSidebar();
     } else {
-      // If the sidebar is being collapsed, close ownedOpen and enrolledOpen if they are open
       toggleSidebar();
-      if (ownedOpen) {
-        setOwnedOpen(false);
-      }
-      if (enrolledOpen) {
-        setEnrolledOpen(false);
-      }
+      if (ownedOpen) setOwnedOpen(false);
+      if (enrolledOpen) setEnrolledOpen(false);
     }
   };
 
   return (
     <div className="h-full bg-gray-800 text-white flex flex-col">
       {/* Toggle Button */}
-
       <span
         className={`p-2 focus:outline-none ${isCollapsed ? "text-center" : "text-start"}`}
       >
-        <SidebarTrigger
-          onClick={handleToggleSidebar} />
+        <SidebarTrigger onClick={handleToggleSidebar} />
       </span>
 
       {/* Sidebar Items */}
@@ -76,7 +56,8 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
             key={item.title}
             to={item.url}
             className={({ isActive }) =>
-              `flex items-center w-full ${isCollapsed ? "justify-center" : "px-4"} py-2 rounded-md transition-colors ${isActive ? "bg-gray-700" : "hover:bg-gray-600"
+              `flex items-center w-full ${isCollapsed ? "justify-center" : "px-4"} py-2 rounded-md transition-colors ${
+                isActive ? "bg-gray-700" : "hover:bg-gray-600"
               }`
             }
           >
@@ -86,92 +67,105 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
         ))}
 
         {/* Owned Channels */}
-        <SidebarMenu
-          title="Owned"
-          icon={UsersIcon}
-          open={ownedOpen}
-          onOpenChange={setOwnedOpen}
-          isCollapsed={isCollapsed}
-        >
+        <SidebarMenu title="Owned" icon={UsersIcon} open={ownedOpen} onOpenChange={setOwnedOpen} isCollapsed={isCollapsed}>
           <Collapsible open={ownedOpen} onOpenChange={setOwnedOpen} className="group/collapsible">
             <SidebarMenuItem>
-              <CollapsibleTrigger asChild
-                className={`flex items-center w-full relative ${isCollapsed ? "justify-center" : "px-4"
-                  } py-2 rounded-md transition-colors hover:bg-gray-600`}
+              <CollapsibleTrigger
+                asChild
+                className={`flex items-center w-full relative ${isCollapsed ? "justify-center" : "px-4"} py-2 rounded-md transition-colors hover:bg-gray-600`}
               >
-                <SidebarMenuButton onClick={() => {
-                  if (isCollapsed) {
-                    toggleSidebar();
-                  }
-                  setOwnedOpen(!ownedOpen);
-                }}>
-                  <IoMdArrowDropright className={`transition-transform duration-300 absolute left-0 ${ownedOpen ? 'rotate-90' : ''} ${isCollapsed ? 'hidden' : ''}`} />
+                <SidebarMenuButton
+                  onClick={() => {
+                    if (isCollapsed) toggleSidebar();
+                    setOwnedOpen(!ownedOpen);
+                  }}
+                >
+                  <IoMdArrowDropright
+                    className={`transition-transform duration-300 absolute left-0 ${ownedOpen ? "rotate-90" : ""} ${
+                      isCollapsed ? "hidden" : ""
+                    }`}
+                  />
                   <UsersIcon />
-                  {!isCollapsed && (
-                    <span className="ml-2">Owned</span>
-                  )}
+                  {!isCollapsed && <span className="ml-2">Owned Channels</span>}
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  <div className={`mt-2 ml-6 ${isCollapsed ? "hidden" : ""}`}>
-                    {ownedChannels.map((channel) => (
-                      <NavLink
-                        key={channel.title}
-                        to={channel.url}
-                        className={({ isActive }) =>
-                          `flex items-center w-full px-4 py-2 rounded-md transition-colors ${isActive ? "bg-gray-600" : "hover:bg-gray-500"
-                          } text-sm`
-                        }
-                      >
-                        <span>{channel.title}</span>
-                      </NavLink>
-                    ))}
-                  </div>
+                  {ownedChannels.length > 0 ? (
+                    <div className={`mt-2 ml-6 ${isCollapsed ? "hidden" : ""}`}>
+                      {ownedChannels.map((channel) => (
+                        <NavLink
+                          key={channel.title}
+                          to={channel.url}
+                          className={({ isActive }) =>
+                            `flex items-center w-full px-4 py-2 rounded-md transition-colors ${
+                              isActive ? "bg-gray-600" : "hover:bg-gray-500"
+                            } text-sm`
+                          }
+                        >
+                          <span>{channel.title}</span>
+                        </NavLink>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm mt-2 ml-6 text-gray-400">
+                      No owned channels.
+                    </p>
+                  )}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
           </Collapsible>
         </SidebarMenu>
+
         <Separator />
 
         {/* Enrolled Channels */}
-        <SidebarMenu>
+        <SidebarMenu title="Enrolled" icon={UsersIcon} open={enrolledOpen} onOpenChange={setEnrolledOpen} isCollapsed={isCollapsed}>
           <Collapsible open={enrolledOpen} onOpenChange={setEnrolledOpen} className="group/collapsible">
             <SidebarMenuItem>
-              <CollapsibleTrigger asChild
-                className={`flex items-center w-full relative ${isCollapsed ? "justify-center" : "px-4"
-                  } py-2 rounded-md transition-colors hover:bg-gray-600`}
+              <CollapsibleTrigger
+                asChild
+                className={`flex items-center w-full relative ${isCollapsed ? "justify-center" : "px-4"} py-2 rounded-md transition-colors hover:bg-gray-600`}
               >
-                <SidebarMenuButton onClick={() => {
-                  if (isCollapsed) {
-                    toggleSidebar();
-                  }
-                  setEnrolledOpen(!enrolledOpen);
-                }}>
-                  <IoMdArrowDropright className={`transition-transform duration-300 absolute left-0 ${enrolledOpen ? 'rotate-90' : ''} ${isCollapsed ? 'hidden' : ''}`} />
+                <SidebarMenuButton
+                  onClick={() => {
+                    if (isCollapsed) toggleSidebar();
+                    setEnrolledOpen(!enrolledOpen);
+                  }}
+                >
+                  <IoMdArrowDropright
+                    className={`transition-transform duration-300 absolute left-0 ${enrolledOpen ? "rotate-90" : ""} ${
+                      isCollapsed ? "hidden" : ""
+                    }`}
+                  />
                   <UsersIcon />
-                  {!isCollapsed && (
-                    <span className="ml-2">Enrolled</span>
-                  )}
+                  {!isCollapsed && <span className="ml-2">Enrolled Channels</span>}
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
-                  <div className={`mt-2 ml-6 ${isCollapsed ? "hidden" : ""}`}>
-                    {enrolledChannels.map((channel) => (
-                      <NavLink
-                        key={channel.title}
-                        to={channel.url}
-                        className={({ isActive }) =>
-                          `flex items-center w-full px-4 py-2 rounded-md transition-colors ${isActive ? "bg-gray-600" : "hover:bg-gray-500"
-                          } text-sm`
-                        }
-                      >
-                        <span>{channel.title}</span>
-                      </NavLink>
-                    ))}
-                  </div>
+                  {enrolledChannels.length > 0 ? (
+                    <div className={`mt-2 ml-6 ${isCollapsed ? "hidden" : ""}`}>
+                      {enrolledChannels.map((channel) => (
+                        <NavLink
+                          key={channel.title}
+                          to={channel.url}
+                          className={({ isActive }) =>
+                            `flex items-center w-full px-4 py-2 rounded-md transition-colors ${
+                              isActive ? "bg-gray-600" : "hover:bg-gray-500"
+                            } text-sm`
+                          }
+                        >
+                          <span>{channel.title}</span>
+                        </NavLink>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm mt-2 ml-6 text-gray-400">
+                      No enrolled channels.
+                    </p>
+                  )}
                 </SidebarMenuSub>
               </CollapsibleContent>
             </SidebarMenuItem>
@@ -187,7 +181,8 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
             key={item.title}
             to={item.url}
             className={({ isActive }) =>
-              `flex items-center w-full ${isCollapsed ? "justify-center" : "px-4"} py-2 rounded-md transition-colors ${isActive ? "bg-gray-700" : "hover:bg-gray-600"
+              `flex items-center w-full ${isCollapsed ? "justify-center" : "px-4"} py-2 rounded-md transition-colors ${
+                isActive ? "bg-gray-700" : "hover:bg-gray-600"
               }`
             }
           >
@@ -203,4 +198,16 @@ export function AppSidebar({ isCollapsed, toggleSidebar }) {
 AppSidebar.propTypes = {
   isCollapsed: PropTypes.bool.isRequired,
   toggleSidebar: PropTypes.func.isRequired,
+  ownedChannels: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  enrolledChannels: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
