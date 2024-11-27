@@ -19,6 +19,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
     const auth = getAuth(app);
@@ -74,7 +75,7 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
-            console.log(currentUser)
+
             if (currentUser) {
                 axiosCommon.post('/jwt', { email: currentUser?.email }, { withCredentials: true })
                     .then(res => {
@@ -101,8 +102,10 @@ const AuthProvider = ({ children }) => {
         googleSignIn,
         githubSignIn,
         logOut,
+        isDarkMode,
+        setIsDarkMode,
     };
-    
+
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

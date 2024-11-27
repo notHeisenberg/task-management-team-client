@@ -19,8 +19,8 @@ const PopOver = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <Button variant="outline" size="icon" className='hover:border-dashed hover:border-current rounded-xl'>
-                  <PlusIcon />
+                <Button variant="outline" size="icon" className='hover:border-dashed hover:border-current rounded-xl dark:bg-gray-200 dark:hover:bg-gray-200'>
+                  <PlusIcon className="dark:text-black" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
