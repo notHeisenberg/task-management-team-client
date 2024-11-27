@@ -39,7 +39,7 @@ export function AppSidebar({ isCollapsed, toggleSidebar, ownedChannels, enrolled
   };
 
   return (
-    <div className="h-full bg-gray-800 text-white flex flex-col">
+    <div className="h-full dark:bg-gray-800 bg-white dark:text-white shadow-lg dark:shadow-gray-800 flex flex-col">
       {/* Toggle Button */}
       <span
         className={`p-2 focus:outline-none ${isCollapsed ? "text-center" : "text-start"}`}
@@ -62,7 +62,7 @@ export function AppSidebar({ isCollapsed, toggleSidebar, ownedChannels, enrolled
             }
           >
             <item.icon />
-            {!isCollapsed && <span className="ml-2">{item.title}</span>}
+            {!isCollapsed && <span className="ml-2 dark:text-white">{item.title}</span>}
           </NavLink>
         ))}
 
@@ -117,8 +117,7 @@ export function AppSidebar({ isCollapsed, toggleSidebar, ownedChannels, enrolled
             </SidebarMenuItem>
           </Collapsible>
         </SidebarMenu>
-
-        <Separator />
+        <Separator className="dark:text-gray-100 dark:bg-gray-100" />
 
         {/* Enrolled Channels */}
         <SidebarMenu title="Enrolled" icon={UsersIcon} open={enrolledOpen} onOpenChange={setEnrolledOpen} isCollapsed={isCollapsed}>

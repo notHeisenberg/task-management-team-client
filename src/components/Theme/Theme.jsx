@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { IoSunnySharp } from "react-icons/io5";
+import { IoMdMoon } from "react-icons/io";
+import useAuth from "@/hooks/useAuth";
+import { useEffect } from "react";
+
 
 const ThemeChange = () => {
-  const [theme, setTheme] = useState("light");
+  const { isDarkMode, setIsDarkMode } = useAuth()
+  const htmlBody = document.getElementById("mainBody");
+  const darkMode = localStorage.getItem("darkMode");
+
+  useEffect(() => {
+    if (darkMode == "true") {
+      htmlBody.classList.add("dark")
+      setIsDarkMode(true)
+    }
+  }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.body.classList.toggle("dark-theme", newTheme === "dark");
+    setIsDarkMode(!isDarkMode);
+    htmlBody.classList.toggle("dark")
+    localStorage.setItem("darkMode", !isDarkMode);
   };
 
   return (
     <button
       onClick={toggleTheme}
-      className="px-4 py-2 rounded-lg bg-gradient-to-r from-pink-500 to-blue-500 text-white text-sm focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300"
+      className="flex items-center justify-end"
     >
-      {theme === "light" ? "Dark Mode" : "Light Mode"}
+      <p className="text-2xl dark:text-white text-gray-500 border-2 rounded-full p-1 border-gray-500 dark:border-none">
+        {isDarkMode ? <IoSunnySharp /> : <IoMdMoon />}
+      </p>
     </button>
   );
 };

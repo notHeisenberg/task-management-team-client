@@ -39,23 +39,23 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className={navbar ? "bg-primary fixed w-full z-30" : "bg-primary shadow fixed w-full"}>
+      <nav className={navbar ? "dark:bg-gray-800 bg-gray-800 fixed w-full z-30" : " shadow fixed w-full"}>
         <Container>
           <div className="">
             {/* Desktop Navigation */}
 
-            <div className="hidden lg:flex items-center text-white py-6">
+            <div className="hidden lg:flex items-center justify-between text-white py-6">
               <div onClick={handleClick} className="w-[12%] text-3xl font-bold cursor-pointer">
                 Taskifyx
               </div>
-              <div className="w-[54%] flex gap-6">
+              <div className="flex gap-6">
                 {navLinks.map((item, idx) => (
                   <a href={item.path} key={idx} className="text-lg font-semibold hover:underline hover:text-pink-400">
                     {item.title}
                   </a>
                 ))}
               </div>
-              <div className=" flex justify-end items-center gap-6">
+              <div className="flex justify-end items-center gap-6">
 
                 {user ?
                   <>
