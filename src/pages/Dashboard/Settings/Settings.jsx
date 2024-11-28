@@ -29,7 +29,7 @@ const Settings = () => {
         </div>
 
         {/* Glassmorphism card */}
-        <div className="backdrop-blur-lg bg-black/40 rounded-2xl shadow-2xl border border-white/20 p-8 relative overflow-hidden">
+        <div className="backdrop-blur-lg bg-white/30 rounded-2xl shadow-2xl border dark:border-gray-200 p-8 relative overflow-hidden">
           {/* Tabs for main settings */}
           <div
             className="flex overflow-x-auto space-x-4 mb-6 scrollbar-hide"
@@ -43,7 +43,7 @@ const Settings = () => {
                 onClick={() => setActiveTab(tab)}
                 className={`px-6 py-2 rounded-lg whitespace-nowrap transition-all duration-300 ${
                   activeTab === tab
-                    ? "bg-white/20 text-white"
+                    ? "bg-gray-600 text-white"
                     : "bg-transparent text-black hover:bg-slate-200"
                 }`}
               >

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { AppSidebar } from "@/components/AppSidebar/AppSidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -17,6 +17,10 @@ const fetchChannels = async (email) => {
 const Dashboard = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { user } = useAuth();
+  const [dashBoardBgImage, setDashBoardBgImage] = useState("");
+  useEffect(() => {
+    setDashBoardBgImage(localStorage.getItem("bgImage"));
+  }, [])
 
   // React Query for fetching channels
   const { data: channels, isLoading, isError, refetch } = useQuery({
@@ -74,10 +78,12 @@ const Dashboard = () => {
             <Navbar />
 
             {/* Page Content */}
-            <main className="flex-1 p-4 overflow-auto relative">
-              {isLoading && <p>Loading channels...</p>}
-              {isError && <p>Error loading channels.</p>}
-              <Outlet />
+            <main className={`flex-1 overflow-auto min-h-screen relative bg-[url(${dashBoardBgImage})] bg-cover bg-no-repeat bg-center back dark:bg-[#1f2937c7]`}>
+              <div className="backdrop-blur-sm p-4 h-full w-full">
+                {isLoading && <p>Loading channels...</p>}
+                {isError && <p>Error loading channels.</p>}
+                <Outlet />
+              </div>
             </main>
           </div>
         </div>
