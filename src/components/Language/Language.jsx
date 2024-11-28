@@ -9,11 +9,11 @@ const Language = () => {
     };
 
     return (
-        <div className="border-2 border-stone-500 rounded-lg absolute">
+        <div className="border dark:border-stone-200 rounded-lg absolute">
             <select
                 value={selectedLanguage}
                 onChange={handleChange}
-                className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                className="backdrop-blur-lg dark:text-gray-800 rounded-lg px-4 py-2 text-sm outline-none"
             >
                 <option value="English">English</option>
                 <option value="Spanish">Spanish</option>

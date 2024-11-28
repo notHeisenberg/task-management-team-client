@@ -66,8 +66,9 @@ const Profile = () => {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold">Profile</h2>
+                <h2 className="dark:text-gray-800 text-2xl font-bold">Profile</h2>
                 <Button
+                    className="dark:backdrop-blur-lg dark:bg-transparent dark:text-gray-800 dark:border-gray-300"
                     variant={editMode ? "destructive" : "outline"}
                     onClick={() => setEditMode(!editMode)}
                 >
@@ -75,7 +76,7 @@ const Profile = () => {
                 </Button>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex flex-col lg:flex-row gap-6 dark:text-gray-800 ">
                 {/* Profile Picture */}
                 <div className="flex flex-col items-center">
                     <img
@@ -119,13 +120,13 @@ const Profile = () => {
 
                     {/* Email */}
                     <div className={!editMode && `flex items-center gap-2`}>
-                        <Label htmlFor="email">Email:</Label>
+                        <Label className="h-full mt-2" htmlFor="email">Email:</Label>
                         <Input
                             id="email"
                             name="email"
                             value={formData.email}
                             disabled
-                            className="max-w-52 overflow-hidden mt-2"
+                            className="max-w-52 overflow-hidden mt-2 dark:border-gray-300"
                         />
                     </div>
 

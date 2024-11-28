@@ -5,11 +5,11 @@ const ChangeBackground = () => {
 
   const handleBackgroundChange = (e) => {
     setBackground(e.target.value);
-    // Save to backend or apply as inline style
+    localStorage.setItem("bgImage", e.target.value);
   };
 
   return (
-    <div className="space-y-6">
+    <div className="pt-6 flex flex-col items-start gap-5">
       <label className="block text-white text-sm font-medium mb-2">
         Background Image URL:
       </label>
@@ -17,7 +17,7 @@ const ChangeBackground = () => {
         type="text"
         value={background}
         onChange={handleBackgroundChange}
-        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white"
+        className="w-full bg-white/10 border outline-none border-white/20 rounded-lg px-4 py-2 text-white"
         placeholder="Enter image URL"
       />
       <div

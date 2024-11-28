@@ -40,7 +40,7 @@ export function Navbar() {
         <Input
           type="text"
           placeholder="Search..."
-          className="w-full bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md pl-10"
+          className="dark:text-gray-800 w-full bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md pl-10"
         />
         <svg
           className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
