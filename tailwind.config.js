@@ -95,7 +95,7 @@ export default {
 		}
 	},
 	// eslint-disable-next-line no-undef
-	plugins: [require("tailwindcss-animate"), [require("rippleui"), require('tailwind-scrollbar-hide')],
+	plugins: [require("tailwindcss-animate"), [require("rippleui"), require('tailwind-scrollbar-hide')], require('daisyui'),
 	],
 }
 
