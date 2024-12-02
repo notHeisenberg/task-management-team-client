@@ -29,7 +29,7 @@ const DashboardHome = () => {
 
     return (
         <div className="mb-10">
-            <h1>This is the Dashboard Home page</h1>
+            {/* <h1>This is the Dashboard Home page</h1> */}
             <div className="grid lg:grid-cols-3 grid-cols-1 gap-5">
             {res.length > 0 ? (
                     res.map((channel) => (
