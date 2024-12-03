@@ -15,7 +15,10 @@ const fetchChannels = async (email) => {
 };
 
 const Dashboard = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    const savedState = localStorage.getItem("sidebarCollapsed");
+    return savedState ? JSON.parse(savedState) : false;
+  });
   const { user } = useAuth();
   const [dashBoardBgImage, setDashBoardBgImage] = useState("");
   useEffect(() => {
@@ -34,7 +37,7 @@ const Dashboard = () => {
     channel.teachers.some((teacher) => teacher.email === user?.email)
   ).map((channel) => ({
     title: channel.channelInfo?.name || `Channel ${channel.channelInfo?.channelCode}`,
-    url: `/dashboard/o/${channel.channelInfo?.channelCode}`,
+    url: `/dashboard/ch/${channel.channelInfo?.channelCode}`,
     image: channel.teachers.find((teacher) => teacher.email === user?.email)?.image,
   })) || [];
 
@@ -42,7 +45,7 @@ const Dashboard = () => {
     channel.students.some((student) => student.email === user?.email)
   ).map((channel) => ({
     title: channel.channelInfo?.name || `Channel ${channel.channelInfo?.channelCode}`,
-    url: `/dashboard/e/${channel.channelInfo?.channelCode}`,
+    url: `/dashboard/ch/${channel.channelInfo?.channelCode}`,
     image: channel.students.find((student) => student.email === user?.email)?.image,
   })) || [];
 
@@ -54,7 +57,7 @@ const Dashboard = () => {
   };
 
   return (
-    <DashboardContext.Provider value={{ refetch }}>
+    <DashboardContext.Provider value={{ refetch, channels, isLoading, isError }}>
       <SidebarProvider>
         <div className="flex h-screen w-screen bg-white">
           {/* Sidebar */}
@@ -78,10 +81,10 @@ const Dashboard = () => {
             <Navbar />
 
             {/* Page Content */}
-            <main className={`flex-1 overflow-auto min-h-screen relative bg-[url(${dashBoardBgImage})] bg-cover bg-no-repeat bg-center back dark:bg-[#1f2937c7]`}>
-              <div className="backdrop-blur-sm p-4 h-full w-full">
-                {isLoading && <p>Loading channels...</p>}
-                {isError && <p>Error loading channels.</p>}
+            <main
+              className={`flex-1 overflow-auto min-h-screen relative bg-[url(${dashBoardBgImage})] bg-cover bg-no-repeat bg-center back dark:bg-[#1f2937c7]`}
+            >
+              <div className="backdrop-blur-sm h-full w-full overflow-y-auto">
                 <Outlet />
               </div>
             </main>

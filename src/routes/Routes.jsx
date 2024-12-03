@@ -13,6 +13,7 @@ import SignUp from "@/pages/SignUp/SignUp";
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import About from "@/pages/About/About";
+import Channel from "@/pages/Dashboard/Channel/Channel";
 
 
 
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <DashboardHome />
+            },
+            {
+                path:"ch/:channelCode",
+                element:<Channel />
             },
             {
                 path: "calendar",
