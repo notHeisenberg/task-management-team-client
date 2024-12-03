@@ -1,43 +1,54 @@
 "use client"
 
-import useAuth from "@/hooks/useAuth";
-import { axiosCommon } from "@/hooks/useAxiosCommon"
-import { useEffect, useState } from "react";
 import DashboardCard from "@/components/DashboardCard/DashboardCard";
+import { DashboardContext } from "@/providers/DashboardProvider/DashboardContext";
+import { squircle } from "ldrs";
+import { useContext } from "react";
 
+squircle.register()
 
 const DashboardHome = () => {
-    const { user } = useAuth()
-    const [res, setRes] = useState([]);
+    const { channels, isLoading, isError } = useContext(DashboardContext);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            if (user?.email) {
-                try {
-                    const response = await axiosCommon.get(`/channel/${user.email}`);
-                    setRes(response.data);
-                    console.log(response.data);
-                } catch (error) {
-                    console.error("Error fetching data:", error);
-                }
-            }
-        };
+    const handleEdit = (channelId) => {
+        console.log(`Edit channel: ${channelId}`);
+    };
 
-        fetchData();
-    }, [user?.email]);
-    console.log(res)
+    const handleCopy = (channelId) => {
+        console.log(`Copy channel: ${channelId}`);
+    };
+
+    const handleArchive = (channelId) => {
+        console.log(`Archive channel: ${channelId}`);
+    };
 
     return (
-        <div className="mb-10">
-            {/* <h1>This is the Dashboard Home page</h1> */}
-            <div className="grid lg:grid-cols-3 grid-cols-1 gap-5">
-            {res.length > 0 ? (
-                    res.map((channel) => (
-                        <DashboardCard channel={channel} key={channel._id} />
-                    ))
-                ) : (
-                    <p>No channels found.</p>
-                )}
+        <div className="p-5 h-screen overflow-hidden">
+            {isLoading && (
+                <div className="h-full flex justify-center items-center">
+                    <div>
+                        <l-squircle
+                            size="37"
+                            stroke="5"
+                            stroke-length="0.15"
+                            bg-opacity="0.1"
+                            speed="0.9"
+                            color="blue"
+                        ></l-squircle></div>
+                </div>
+            )}
+            {isError && <p>Error loading channels.</p>}
+            <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 overflow-y-auto max-h-full">
+                {channels?.length > 0 &&
+                    channels.map((channel) => (
+                        <DashboardCard
+                            key={channel._id}
+                            channel={channel}
+                            onEdit={() => handleEdit(channel._id)}
+                            onCopy={() => handleCopy(channel._id)}
+                            onArchive={() => handleArchive(channel._id)}
+                        />
+                    ))}
             </div>
         </div>
     );
