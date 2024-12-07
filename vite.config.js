@@ -10,5 +10,8 @@ export default defineConfig({
       // eslint-disable-next-line no-undef
       "@": path.resolve(__dirname, "./src"),
     }
-  }
+  },
+  server: {
+    historyApiFallback: true,
+  },
 })

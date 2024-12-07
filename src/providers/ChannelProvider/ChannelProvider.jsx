@@ -15,6 +15,7 @@ export const ChannelProvider = ({ children }) => {
         data: channel,
         isLoading,
         isError,
+        refetch,
     } = useQuery({
         queryKey: ["channel", channelCode],
         queryFn: async () => {
@@ -22,10 +23,13 @@ export const ChannelProvider = ({ children }) => {
             return response.data;
         },
         enabled: !!channelCode,
+        refetchInterval: 15000, // Automatically refetch every 5 seconds
+        refetchOnWindowFocus: true, // Refetch when the window is focuseds
+        staleTime: 30000, // Consider data fresh for 30 seconds
     });
 
     // Provide channel data and states
-    const value = { channel, isLoading, isError };
+    const value = { channel, isLoading, isError, refetch };
 
     return (
         <ChannelContext.Provider value={value}>

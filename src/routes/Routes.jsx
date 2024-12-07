@@ -14,6 +14,7 @@ import { createBrowserRouter } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import About from "@/pages/About/About";
 import Channel from "@/pages/Dashboard/Channel/Channel";
+import Post from "@/pages/Dashboard/Post/Post";
 
 
 
@@ -37,8 +38,8 @@ const router = createBrowserRouter([
             },
 
             {
-                path:'about',
-                element:<About />
+                path: 'about',
+                element: <About />
             },
         ]
     },
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
     },
 
 
-    
+
 
 
     // dashboard route
@@ -66,8 +67,12 @@ const router = createBrowserRouter([
                 element: <DashboardHome />
             },
             {
-                path:"ch/:channelCode",
-                element:<Channel />
+                path: "ch/:channelCode",
+                element: <Channel />
+            },
+            {
+                path: "ch/:channelCode/p/:postCode",
+                element: <Post />
             },
             {
                 path: "calendar",
