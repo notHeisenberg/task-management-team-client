@@ -9,6 +9,7 @@ import useAuth from "@/hooks/useAuth";
 import { axiosCommon } from "@/hooks/useAxiosCommon";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import settingsLogo from "../../../../assets/settings.svg";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 const Stream = () => {
     const { channel, refetch } = useContext(ChannelContext);
@@ -33,6 +34,15 @@ const Stream = () => {
                 status: "error",
             });
         }
+    };
+console.log(channel)
+    const copyPostCode = (channelCode, postCode) => {
+        navigator.clipboard.writeText(`${window.location.origin}/dashboard/ch/${channelCode}/p/${postCode}`)
+        toast({
+            title: "Link copied!",
+            description: "You can now share this link with others.",
+            status: "success",
+        });
     };
 
     const generateRandomCode = () => {
@@ -221,9 +231,18 @@ const Stream = () => {
                                                 </p>
                                             </div>
                                         </div>
-                                        <Button variant="ghost" size="sm" className="rounded-full">
-                                            <BsThreeDotsVertical />
-                                        </Button>
+                                        <Popover>
+                                            <PopoverTrigger>
+                                                <Button variant="ghost" size="sm" className="rounded-full">
+                                                    <BsThreeDotsVertical />
+                                                </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent className='w-fit h-fit p-1 absolute right-0'>
+                                                <Button variant="ghost" size="sm" onClick={() => copyPostCode(post.channelCode, post.postCode)}>
+                                                    Copy Link
+                                                </Button>
+                                            </PopoverContent>
+                                        </Popover>
                                     </div>
 
                                     {/* Post Content */}
@@ -238,7 +257,7 @@ const Stream = () => {
                                                 onClick={() => toggleComments(index)}
                                                 className="mb-3"
                                             >
-                                              <UsersIcon/>  {` ${post.comments?.length || 0} Comments`}
+                                                <UsersIcon />  {` ${post.comments?.length || 0} Comments`}
                                             </Button>
                                         )}
                                         <ul className="space-y-4">
