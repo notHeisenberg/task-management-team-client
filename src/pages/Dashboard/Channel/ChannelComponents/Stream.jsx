@@ -35,7 +35,7 @@ const Stream = () => {
             });
         }
     };
-console.log(channel)
+
     const copyPostCode = (channelCode, postCode) => {
         navigator.clipboard.writeText(`${window.location.origin}/dashboard/ch/${channelCode}/p/${postCode}`)
         toast({
@@ -213,18 +213,18 @@ console.log(channel)
                                     <div className="flex justify-between items-center mb-4">
                                         <div className="flex items-center gap-2">
                                             <img
-                                                src={post.author.image}
-                                                alt={post.author.name}
+                                                src={post.author?.image}
+                                                alt={post.author?.name}
                                                 className="w-10 h-10 rounded-full"
                                             />
                                             <div>
-                                                <span className="font-bold">{post.author.name}</span>
+                                                <span className="font-bold">{post.author?.name}</span>
                                                 <p className="text-sm text-gray-500">
-                                                    {new Date(post.timestamp).toLocaleDateString('en-US', {
+                                                    {new Date(post?.timestamp).toLocaleDateString('en-US', {
                                                         month: 'short',
                                                         day: 'numeric',
                                                     })},{" "}
-                                                    {new Date(post.timestamp).toLocaleTimeString([], {
+                                                    {new Date(post?.timestamp).toLocaleTimeString([], {
                                                         hour: 'numeric',
                                                         minute: 'numeric',
                                                     })}
@@ -238,7 +238,7 @@ console.log(channel)
                                                 </Button>
                                             </PopoverTrigger>
                                             <PopoverContent className='w-fit h-fit p-1 absolute right-0'>
-                                                <Button variant="ghost" size="sm" onClick={() => copyPostCode(post.channelCode, post.postCode)}>
+                                                <Button variant="ghost" size="sm" onClick={() => copyPostCode(post?.channelCode, post?.postCode)}>
                                                     Copy Link
                                                 </Button>
                                             </PopoverContent>

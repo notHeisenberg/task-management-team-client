@@ -10,8 +10,8 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import useAuth from "@/hooks/useAuth";
-import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { useNavigate } from 'react-router-dom';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 export function DropdownMenuDemo() {
     const { user, logOut } = useAuth();
